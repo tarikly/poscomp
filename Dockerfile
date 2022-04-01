@@ -8,6 +8,8 @@ RUN yarn build
 
 FROM nginx:alpine
 COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
+RUN chgrp -R root /var/cache/nginx /var/run /var/log/nginx && \
+    chmod -R 770 /var/cache/nginx /var/run /var/log/nginx
 ENV PORT 8080
 EXPOSE $PORT
 CMD ["nginx", "-g", "daemon off;"]

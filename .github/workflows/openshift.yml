@@ -160,10 +160,10 @@ jobs:
         image: ${{ steps.push-to-registry.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
-        #create_pull_secret_from: podman
-        registry_hostname: quay.io
-        registry_username: ${{ secrets.REGISTRY_USER }}
-        registry_password: ${{ secrets.REGISTRY_PASSWORD }}
+        image_pull_secret_name: regcred
+        #registry_hostname: quay.io
+        #registry_username: ${{ secrets.REGISTRY_USER }}
+        #registry_password: ${{ secrets.REGISTRY_PASSWORD }}
 
     - name: View application route
       run: |
